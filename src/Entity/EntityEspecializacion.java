@@ -13,11 +13,12 @@ public class EntityEspecializacion {
     public EntityEspecializacion() {
     }
 
-    public EntityEspecializacion(int ID_Especialidad, String nameEspeciality, String description) {
-        this.ID_Especialidad = ID_Especialidad;
+    public EntityEspecializacion(String nameEspeciality, String description) {
         NameEspeciality = nameEspeciality;
         Description = description;
     }
+
+
 
     public int getID_Especialidad() {
         return ID_Especialidad;
