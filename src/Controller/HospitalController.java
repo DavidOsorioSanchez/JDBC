@@ -25,10 +25,10 @@ public class HospitalController {
         return lista;
     }
 
-    public void proyectar(){
-        String lista = this.listar(this.objModel.encontrarCita());
-        JOptionPane.showMessageDialog(null,lista);
-    }
+//    public void proyectar(){
+//        String lista = this.listar(this.objModel.encontrarCita());
+//        JOptionPane.showMessageDialog(null,lista);
+//    }
 
 
 
