@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HospitalModel implements CRUD {
@@ -22,9 +24,9 @@ public class HospitalModel implements CRUD {
 
         try {
 
-            String sql = "INSERT INTO Cita(date,hour,motive) VALUES(?,?,?);";
+            String SQL = "INSERT INTO Cita(date,hour,motive) VALUES(?,?,?);";
 
-            PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setInt(1, objModelos.getDate());
             objPrepare.setInt(2, objModelos.getHour());
@@ -51,17 +53,112 @@ public class HospitalModel implements CRUD {
 
     @Override
     public boolean actualizarCita(Object object) {
-        return false;
+
+        Connection objConnection = ConfigDB.openConnection();
+
+        Modelos objModelos = (Modelos)object;
+
+        boolean isUpdated=false;
+
+        try {
+
+            String SQL  = "UPDATE Cita SET date = ?, hour = ?, motive = ? WHERE id_appointment = ?;";
+
+            PreparedStatement objPrepare = objConnection.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
+
+
+            objPrepare.setInt(1,objModelos.getDate());
+            objPrepare.setInt(2,objModelos.getHour());
+            objPrepare.setString(3,objModelos.getMotive());
+            objPrepare.setInt(4,objModelos.getID_Cita());
+
+
+            int lineasAfectadas  = objPrepare.executeUpdate();
+            if (lineasAfectadas > 0){
+                isUpdated= true;
+                JOptionPane.showMessageDialog(null,"la actualizacion fue exitosa. ^_^");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"(T-T) Error: " + e.getMessage());
+        }finally {
+
+            ConfigDB.closeConnection();
+        }
+        return isUpdated;
     }
 
     @Override
     public boolean eliminarCita(Object object) {
-        return false;
+        Modelos objModelos = (Modelos) object;
+
+
+        boolean isDeleted = false;
+
+
+        Connection objConnection = ConfigDB.openConnection();
+
+        try {
+
+            String SQL = "DELETE FROM Cita WHERE  id_appointment = ?;";
+
+
+            PreparedStatement objPrepare = objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
+
+
+            objPrepare.setInt(1, objModelos.getID_Cita());
+
+            int totalAfectado = objPrepare.executeUpdate();
+
+            if (totalAfectado>0){
+                isDeleted = true;
+                JOptionPane.showMessageDialog(null, "Se a eliminado efectivamente. (^_^)");
+            }
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ಥ_ಥ Error: " + e.getMessage());
+        }
+
+        //8. Cerrar la conexión
+        ConfigDB.closeConnection();
+
+        return isDeleted;
     }
 
     @Override
     public List<Object> encontrarCita() {
-        return null;
+        Connection objConnection = ConfigDB.openConnection();
+
+        List<Object> listaCita = new ArrayList<>();
+
+
+        try {
+
+            String SQL = "SELECT * FROM Cita ORDER BY Cita.id_appointment ASC;";
+
+            PreparedStatement objPrepareStatement = (PreparedStatement) objConnection.prepareStatement(SQL);
+
+            ResultSet objResult = (ResultSet) objPrepareStatement.executeQuery();
+
+            while (objResult.next()) {
+
+                Modelos objModelos = new Modelos();
+
+                objModelos.setID_Cita(objResult.getInt("id"));
+                objModelos.setDate(objResult.getInt("date"));
+                objModelos.setHour(objResult.getInt("hour"));
+                objModelos.setMotive(objResult.getString("motive"));
+
+                listaCita.add(objModelos);
+            }
+            JOptionPane.showMessageDialog(null,"Busqueda sin problema. ♥‿♥");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ಠ_ಠ Error: " + e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+
+        return listaCita;
     }
 
     @Override

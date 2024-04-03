@@ -28,7 +28,7 @@ public class Modelos {
     private String DocumentPassword;
 
 
-    public Modelos(int ID_Cita, int date, int hour, String motive, int ID_Especialidad, String nameEspeciality, String description, int ID_Medico, String nameMedic, String lastNameMedic, int ID_Paciente, String namePatient, String lastNamePatient, String documentPassword) {
+    public Modelos() {
         this.ID_Cita = ID_Cita;
         Date = date;
         Hour = hour;
