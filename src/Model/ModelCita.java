@@ -1,8 +1,8 @@
 package Model;
 
-import Database.CRUD;
+import Database.CRUDCita;
 import Database.ConfigDB;
-import Entity.Modelos;
+import Entity.EntityCita;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HospitalModel implements CRUD {
+public class ModelCita implements CRUDCita {
 
 
     @Override
@@ -20,7 +20,7 @@ public class HospitalModel implements CRUD {
 
         Connection objConnection = ConfigDB.openConnection();
 
-        Modelos objModelos = (Modelos) object;
+        EntityCita objModelos = (EntityCita) object;
 
         try {
 
@@ -56,7 +56,7 @@ public class HospitalModel implements CRUD {
 
         Connection objConnection = ConfigDB.openConnection();
 
-        Modelos objModelos = (Modelos)object;
+        EntityCita objModelos = (EntityCita)object;
 
         boolean isUpdated=false;
 
@@ -89,7 +89,7 @@ public class HospitalModel implements CRUD {
 
     @Override
     public boolean eliminarCita(Object object) {
-        Modelos objModelos = (Modelos) object;
+        EntityCita objModelos = (EntityCita) object;
 
 
         boolean isDeleted = false;
@@ -119,7 +119,6 @@ public class HospitalModel implements CRUD {
             JOptionPane.showMessageDialog(null,"ಥ_ಥ Error: " + e.getMessage());
         }
 
-        //8. Cerrar la conexión
         ConfigDB.closeConnection();
 
         return isDeleted;
@@ -142,7 +141,7 @@ public class HospitalModel implements CRUD {
 
             while (objResult.next()) {
 
-                Modelos objModelos = new Modelos();
+                EntityCita objModelos = new EntityCita();
 
                 objModelos.setID_Cita(objResult.getInt("id"));
                 objModelos.setDate(objResult.getInt("date"));
@@ -161,63 +160,4 @@ public class HospitalModel implements CRUD {
         return listaCita;
     }
 
-    @Override
-    public Object insertarMedico(Object object) {
-        return null;
-    }
-
-    @Override
-    public boolean actualizarMedico(Object object) {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarMedico(Object object) {
-        return false;
-    }
-
-    @Override
-    public List<Object> encontrarMedico() {
-        return null;
-    }
-
-    @Override
-    public Object insertarPaciente(Object object) {
-        return null;
-    }
-
-    @Override
-    public boolean actualizarPaciente(Object object) {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarPaciente(Object object) {
-        return false;
-    }
-
-    @Override
-    public List<Object> encontrarPaciente() {
-        return null;
-    }
-
-    @Override
-    public Object insertarEspecialidad(Object object) {
-        return null;
-    }
-
-    @Override
-    public boolean actualizarEspecialidad(Object object) {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarEspecialidad(Object object) {
-        return false;
-    }
-
-    @Override
-    public List<Object> encontrarEspecialidad() {
-        return null;
-    }
 }
