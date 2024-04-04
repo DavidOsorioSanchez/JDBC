@@ -11,8 +11,7 @@ public class EntityMedico {
     public EntityMedico() {
     }
 
-    public EntityMedico(int ID_Medico, String nameMedic, String lastNameMedic) {
-        this.ID_Medico = ID_Medico;
+    public EntityMedico( String nameMedic, String lastNameMedic) {
         NameMedic = nameMedic;
         LastNameMedic = lastNameMedic;
     }

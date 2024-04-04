@@ -3,15 +3,14 @@ package Entity;
 public class EntityCita {
     //    cita
     private int ID_Cita;
-    private int Date;
+    private String Date;
     private int Hour;
     private String Motive;
 
     public EntityCita() {
     }
 
-    public EntityCita(int ID_Cita, int date, int hour, String motive) {
-        this.ID_Cita = ID_Cita;
+    public EntityCita(String date, int hour, String motive) {
         Date = date;
         Hour = hour;
         Motive = motive;
@@ -25,11 +24,11 @@ public class EntityCita {
         this.ID_Cita = ID_Cita;
     }
 
-    public int getDate() {
+    public String getDate() {
         return Date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         Date = date;
     }
 
@@ -53,7 +52,7 @@ public class EntityCita {
     public String toString() {
         return "EntityCita{" +
                 "ID_Cita=" + ID_Cita +
-                ", Date=" + Date +
+                ", Date='" + Date + '\'' +
                 ", Hour=" + Hour +
                 ", Motive='" + Motive + '\'' +
                 '}';

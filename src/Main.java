@@ -1,5 +1,9 @@
+import Controller.CitaController;
 import Controller.EspecialidadController;
+import Controller.MedicoController;
+import Controller.PacienteController;
 import Database.ConfigDB;
+import Model.ModelMedico;
 
 import javax.swing.*;
 
@@ -60,12 +64,16 @@ public class Main {
                                 """));
                             switch (option2){
                                 case 1:
+                                    MedicoController.insert();
                                     break;
                                 case 2:
+                                    MedicoController.update();
                                     break;
                                 case 3:
+                                    MedicoController.borrar();
                                     break;
                                 case 4:
+                                    MedicoController.listar();
                                     break;
                             }
                         }while (option2 != 5);
@@ -77,18 +85,22 @@ public class Main {
                                 2. Modificar Cita
                                 3. Borrar Cita
                                 4. Listar Cita
-                                5. Salir 
+                                5. Salir
                                 
                                 Elige la opcion que mas te conviene.
                                 """));
                             switch (option2){
                                 case 1:
+                                    CitaController.insert();
                                     break;
                                 case 2:
+                                    CitaController.update();
                                     break;
                                 case 3:
+                                    CitaController.borrar();
                                     break;
                                 case 4:
+                                    CitaController.listar();
                                     break;
                             }
                         }while (option2 != 5);
@@ -106,12 +118,16 @@ public class Main {
                                 """));
                             switch (option2){
                                 case 1:
+                                    PacienteController.insert();
                                     break;
                                 case 2:
+                                    PacienteController.update();
                                     break;
                                 case 3:
+                                    PacienteController.borrar();
                                     break;
                                 case 4:
+                                    PacienteController.listar();
                                     break;
                             }
                         }while (option2 != 5);

@@ -138,13 +138,12 @@ public class ModelMedico implements CRUDMedico {
 
                 EntityMedico objModelos = new EntityMedico();
 
-                objModelos.setID_Medico(objResult.getInt("id"));
+                objModelos.setID_Medico(objResult.getInt("id_doctor"));
                 objModelos.setNameMedic(objResult.getString("name"));
                 objModelos.setLastNameMedic(objResult.getString("lastName"));
 
                 listaMedico.add(objModelos);
             }
-            JOptionPane.showMessageDialog(null,"Busqueda sin problema. ♥‿♥");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ಠ_ಠ Error: " + e.getMessage());
         }

@@ -27,7 +27,7 @@ public class ModelPaciente implements CRUDPaciente {
 
             objPrepare.setString(1, objModelos.getNamePatient());
             objPrepare.setString(2, objModelos.getLastNamePatient());
-            objPrepare.setInt(3, objModelos.getDateBorn());
+            objPrepare.setString(3, objModelos.getDateBorn());
             objPrepare.setString(4, objModelos.getDocumentPassword());
 
             objPrepare.execute();
@@ -66,7 +66,7 @@ public class ModelPaciente implements CRUDPaciente {
 
             objPrepare.setString(1,objModelos.getNamePatient());
             objPrepare.setString(2,objModelos.getLastNamePatient());
-            objPrepare.setInt(3,objModelos.getDateBorn());
+            objPrepare.setString(3,objModelos.getDateBorn());
             objPrepare.setString(4,objModelos.getDocumentPassword());
             objPrepare.setInt(4,objModelos.getID_Paciente());
 
@@ -141,15 +141,14 @@ public class ModelPaciente implements CRUDPaciente {
 
                 EntityPaciente objModelos = new EntityPaciente();
 
-                objModelos.setID_Paciente(objResult.getInt("id"));
+                objModelos.setID_Paciente(objResult.getInt("id_patient"));
                 objModelos.setNamePatient(objResult.getString("name"));
                 objModelos.setLastNamePatient(objResult.getString("lastName"));
-                objModelos.setDateBorn(objResult.getInt("bornDate"));
-                objModelos.setDocumentPassword(objResult.getString("document"));
+                objModelos.setDateBorn(objResult.getString("bornDate"));
+                objModelos.setDocumentPassword(objResult.getString("documentPassword"));
 
                 listaPaciente.add(objModelos);
             }
-            JOptionPane.showMessageDialog(null,"Busqueda sin problema. ♥‿♥");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ಠ_ಠ Error: " + e.getMessage());
         }

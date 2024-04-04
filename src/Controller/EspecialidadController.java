@@ -30,7 +30,7 @@ public class EspecialidadController {
     }
 
     public static String listar(List<Object> listado){
-        String lista = "Listado de citas";
+        String lista = "Listado de especializaciones";
 
         for (Object obj : listado){
             EntityEspecializacion objModelos = (EntityEspecializacion) obj;

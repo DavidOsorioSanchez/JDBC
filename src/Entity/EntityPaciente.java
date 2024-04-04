@@ -6,14 +6,13 @@ public class EntityPaciente {
     private int ID_Paciente;
     private String NamePatient;
     private String LastNamePatient;
-    private int DateBorn;
+    private String DateBorn;
     private String DocumentPassword;
 
     public EntityPaciente() {
     }
 
-    public EntityPaciente(int ID_Paciente, String namePatient, String lastNamePatient, int dateBorn, String documentPassword) {
-        this.ID_Paciente = ID_Paciente;
+    public EntityPaciente(String namePatient, String lastNamePatient, String dateBorn, String documentPassword) {
         NamePatient = namePatient;
         LastNamePatient = lastNamePatient;
         DateBorn = dateBorn;
@@ -44,11 +43,11 @@ public class EntityPaciente {
         LastNamePatient = lastNamePatient;
     }
 
-    public int getDateBorn() {
+    public String getDateBorn() {
         return DateBorn;
     }
 
-    public void setDateBorn(int dateBorn) {
+    public void setDateBorn(String dateBorn) {
         DateBorn = dateBorn;
     }
 
@@ -66,7 +65,7 @@ public class EntityPaciente {
                 "ID_Paciente=" + ID_Paciente +
                 ", NamePatient='" + NamePatient + '\'' +
                 ", LastNamePatient='" + LastNamePatient + '\'' +
-                ", DateBorn=" + DateBorn +
+                ", DateBorn='" + DateBorn + '\'' +
                 ", DocumentPassword='" + DocumentPassword + '\'' +
                 '}';
     }

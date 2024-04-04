@@ -28,7 +28,7 @@ public class ModelCita implements CRUDCita {
 
             PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            objPrepare.setInt(1, objModelos.getDate());
+            objPrepare.setString(1, objModelos.getDate());
             objPrepare.setInt(2, objModelos.getHour());
             objPrepare.setString(3, objModelos.getMotive());
 
@@ -67,7 +67,7 @@ public class ModelCita implements CRUDCita {
             PreparedStatement objPrepare = objConnection.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
 
 
-            objPrepare.setInt(1,objModelos.getDate());
+            objPrepare.setString(1,objModelos.getDate());
             objPrepare.setInt(2,objModelos.getHour());
             objPrepare.setString(3,objModelos.getMotive());
             objPrepare.setInt(4,objModelos.getID_Cita());
@@ -143,14 +143,13 @@ public class ModelCita implements CRUDCita {
 
                 EntityCita objModelos = new EntityCita();
 
-                objModelos.setID_Cita(objResult.getInt("id"));
-                objModelos.setDate(objResult.getInt("date"));
+                objModelos.setID_Cita(objResult.getInt("id_appointment"));
+                objModelos.setDate(objResult.getString("date"));
                 objModelos.setHour(objResult.getInt("hour"));
                 objModelos.setMotive(objResult.getString("motive"));
 
                 listaCita.add(objModelos);
             }
-            JOptionPane.showMessageDialog(null,"Busqueda sin problema. ♥‿♥");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ಠ_ಠ Error: " + e.getMessage());
         }
