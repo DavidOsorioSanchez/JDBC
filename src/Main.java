@@ -32,13 +32,16 @@ public class Main {
                                 """));
                             switch (option2){
                                 case 1:
+                                    EspecialidadController.update();
                                     break;
                                 case 2:
                                     EspecialidadController.insert();
                                     break;
                                 case 3:
+                                    EspecialidadController.borrar();
                                     break;
                                 case 4:
+                                    EspecialidadController.listar();
                                     break;
                             }
                         }while (option2 != 5);

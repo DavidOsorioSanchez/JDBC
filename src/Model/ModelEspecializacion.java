@@ -138,13 +138,12 @@ public class ModelEspecializacion implements CRUDEspecializacion {
 
                 EntityEspecializacion objModelos = new EntityEspecializacion();
 
-                objModelos.setID_Especialidad(objResult.getInt("id"));
+                objModelos.setID_Especialidad(objResult.getInt("id_Especialidad"));
                 objModelos.setNameEspeciality(objResult.getString("name"));
                 objModelos.setDescription(objResult.getString("description"));
 
                 listaEspecialidad.add(objModelos);
             }
-            JOptionPane.showMessageDialog(null,"Busqueda sin problema. ♥‿♥");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ಠ_ಠ Error: " + e.getMessage());
         }
@@ -153,4 +152,5 @@ public class ModelEspecializacion implements CRUDEspecializacion {
 
         return listaEspecialidad;
     }
+
 }

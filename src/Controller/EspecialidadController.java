@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.EntityEspecializacion;
 import Model.ModelEspecializacion;
+import Util.Util;
 
 import javax.swing.*;
 import java.util.List;
@@ -22,7 +23,10 @@ public class EspecialidadController {
 //    getAll
 
     public static  void listar(){
+
         String list = listar(instaceModel().encontrarEspecialidad());
+
+        JOptionPane.showMessageDialog(null, list);
     }
 
     public static String listar(List<Object> listado){
@@ -34,5 +38,22 @@ public class EspecialidadController {
             lista += objModelos.toString() + "\n";
         }
         return lista;
+    }
+
+    public static void borrar(){
+        Object[] options = Util.listArray(instaceModel().encontrarEspecialidad());
+
+        EntityEspecializacion objSelected = (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona una especialidad","",JOptionPane.QUESTION_MESSAGE, null,options,options[0]);
+
+        instaceModel().eliminarEspecialidad(objSelected);
+    }
+
+    public static void update(){
+        Object[] options = Util.listArray(instaceModel().encontrarEspecialidad());
+        EntityEspecializacion objSelected = (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona una especialidad para actualizar","",JOptionPane.QUESTION_MESSAGE, null,options,options[0]);
+        objSelected.setNameEspeciality(JOptionPane.showInputDialog(null, "Ingrresa el nuevo numero:", objSelected.getNameEspeciality()));
+        objSelected.setDescription(JOptionPane.showInputDialog(null, "Ingresa la nueva descripcion: ",objSelected.getDescription()));
+
+        instaceModel().actualizarEspecialidad(objSelected);
     }
 }
