@@ -1,5 +1,6 @@
 package Controller;
 
+import Entity.EntityEspecializacion;
 import Entity.EntityMedico;
 import Model.ModelMedico;
 import Util.Util;
@@ -12,7 +13,10 @@ public class MedicoController {
     public static void insert(){
         String name = JOptionPane.showInputDialog(null,"ingresa el nombre del medico");
         String lastName = JOptionPane.showInputDialog(null,"ingresa la descripcion del medico");
-        instaceModel().insertarMedico(new EntityMedico(name, lastName));
+
+        Object[] opcionesEspecial = Util.listArray(EspecialidadController.instaceModel().encontrarEspecialidad());
+
+        EntityEspecializacion objEspecialidad = (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona tu especialidad", "no titulo", JOptionPane.QUESTION_MESSAGE, null, opcionesEspecial, opcionesEspecial[0]);
     }
 
     public static ModelMedico instaceModel(){
@@ -50,9 +54,14 @@ public class MedicoController {
     public static void update(){
         Object[] options = Util.listArray(instaceModel().encontrarMedico());
         EntityMedico objSelected = (EntityMedico) JOptionPane.showInputDialog(null, "selecciona el medico que quieres para actualizar","",JOptionPane.QUESTION_MESSAGE, null,options,options[0]);
-        objSelected.setNameMedic(JOptionPane.showInputDialog(null, "Ingresa el nuevo nombre del medico:", objSelected.getNameMedic()));
-        objSelected.setLastNameMedic(JOptionPane.showInputDialog(null, "Ingresa el nuevo apellido: ",objSelected.getLastNameMedic()));
 
-        instaceModel().actualizarMedico(objSelected);
+        String name = JOptionPane.showInputDialog(null, "Ingresa el nuevo nombre del medico:", objSelected.getNameMedic());
+        String lastName = JOptionPane.showInputDialog(null, "Ingresa el nuevo apellido: ",objSelected.getLastNameMedic());
+
+        Object[] otionEspecial = Util.listArray(EspecialidadController.instaceModel().encontrarEspecialidad());
+        EntityEspecializacion objEspecial= (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona una especialidad","",JOptionPane.QUESTION_MESSAGE, null,options,options[0]);
+
+
+        instaceModel().actualizarMedico(new EntityMedico(name,lastName,objEspecial.getID_Especialidad(),objEspecial));
     }
 }

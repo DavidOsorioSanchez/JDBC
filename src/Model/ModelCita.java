@@ -133,7 +133,7 @@ public class ModelCita implements CRUDCita {
 
         try {
 
-            String SQL = "SELECT * FROM Cita ORDER BY Cita.id_appointment ASC;";
+            String SQL = "SELECT * FROM Cita ORDER BY Cita.date ASC;";
 
             PreparedStatement objPrepareStatement = (PreparedStatement) objConnection.prepareStatement(SQL);
 

@@ -131,7 +131,7 @@ public class ModelPaciente implements CRUDPaciente {
 
         try {
 
-            String SQL = "SELECT * FROM Paciente ORDER BY Paciente.id_patient ASC;";
+            String SQL = "SELECT * FROM Paciente ORDER BY Paciente.documentPassword ASC;";
 
             PreparedStatement objPrepareStatement = (PreparedStatement) objConnection.prepareStatement(SQL);
 

@@ -2,6 +2,7 @@ package Model;
 
 import Database.CRUDMedico;
 import Database.ConfigDB;
+import Entity.EntityEspecializacion;
 import Entity.EntityMedico;
 
 import javax.swing.*;
@@ -22,12 +23,13 @@ public class ModelMedico implements CRUDMedico {
 
         try {
 
-            String SQL = "INSERT INTO Medico(name,lastName) VALUES(?,?);";
+            String SQL = "INSERT INTO Medico(name,lastName,id_Especialidad) VALUES(?,?,?);";
 
             PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objModelos.getNameMedic());
             objPrepare.setString(2, objModelos.getLastNameMedic());
+            objPrepare.setInt(3,objModelos.getFk_ID_Especialidad());
 
             objPrepare.execute();
 
@@ -58,14 +60,14 @@ public class ModelMedico implements CRUDMedico {
 
         try {
 
-            String SQL  = "UPDATE Medico SET name = ?, lastName = ? WHERE id_doctor = ?;";
+            String SQL  = "UPDATE Medico SET name = ?, lastName = ?, id_Especialidad = ?; ";
 
             PreparedStatement objPrepare = objConnection.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
 
 
             objPrepare.setString(1,objModelos.getNameMedic());
             objPrepare.setString(2,objModelos.getLastNameMedic());
-            objPrepare.setInt(3,objModelos.getID_Medico());
+            objPrepare.setInt(3,objModelos.getFk_ID_Especialidad());
 
 
             int lineasAfectadas  = objPrepare.executeUpdate();
@@ -128,7 +130,8 @@ public class ModelMedico implements CRUDMedico {
 
         try {
 
-            String SQL = "SELECT * FROM Medico ORDER BY Medico.id_doctor ASC;";
+            String SQL = "SELECT * FROM Medico INNER JOIN Especialidad ON Especialidad.id_Especialidad = Medico.id_doctor;";
+
 
             PreparedStatement objPrepareStatement = (PreparedStatement) objConnection.prepareStatement(SQL);
 
@@ -137,10 +140,18 @@ public class ModelMedico implements CRUDMedico {
             while (objResult.next()) {
 
                 EntityMedico objModelos = new EntityMedico();
+                EntityEspecializacion objEspecial = new EntityEspecializacion();
 
-                objModelos.setID_Medico(objResult.getInt("id_doctor"));
-                objModelos.setNameMedic(objResult.getString("name"));
-                objModelos.setLastNameMedic(objResult.getString("lastName"));
+                objModelos.setID_Medico(objResult.getInt("Medico.id_doctor"));
+                objModelos.setNameMedic(objResult.getString("Medico.name"));
+                objModelos.setLastNameMedic(objResult.getString("Medico.lastName"));
+                objModelos.setFk_ID_Especialidad(objResult.getInt("Medico.id_Especialidad"));
+
+                objEspecial.setID_Especialidad(objResult.getInt("Especialidad.id_Especialidad"));
+                objEspecial.setNameEspeciality(objResult.getString("Especialidad.name"));
+                objEspecial.setDescription(objResult.getString("Especialidad.description"));
+
+                objModelos.setEspecial(objEspecial);
 
                 listaMedico.add(objModelos);
             }

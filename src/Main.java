@@ -36,10 +36,10 @@ public class Main {
                                 """));
                             switch (option2){
                                 case 1:
-                                    EspecialidadController.update();
+                                    EspecialidadController.insert();
                                     break;
                                 case 2:
-                                    EspecialidadController.insert();
+                                    EspecialidadController.update();
                                     break;
                                 case 3:
                                     EspecialidadController.borrar();
@@ -84,7 +84,7 @@ public class Main {
                                 1. Añadir informacion a Cita
                                 2. Modificar Cita
                                 3. Borrar Cita
-                                4. Listar Cita
+                                4. Listar una cita por fecha
                                 5. Salir
                                 
                                 Elige la opcion que mas te conviene.
@@ -111,7 +111,7 @@ public class Main {
                                 1. Añadir informacion a paciente
                                 2. Modificar paciente
                                 3. Borrar paciente
-                                4. Listar paciente
+                                4. Listar un paciente documentod
                                 5. Salir 
                                 
                                 Elige la opcion que mas te conviene.
