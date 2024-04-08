@@ -23,9 +23,9 @@ public class ModelMedico implements CRUDMedico {
 
         try {
 
-            String SQL = "INSERT INTO Medico(name,lastName,id_Especialidad) VALUES(?,?,?);";
+            String SQL = "INSERT INTO Medico(name,lastName,id_Especialidad) VALUES (?,?,?);";
 
-            PreparedStatement objPrepare = (PreparedStatement) objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement objPrepare = objConnection.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objModelos.getNameMedic());
             objPrepare.setString(2, objModelos.getLastNameMedic());

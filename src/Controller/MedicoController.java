@@ -12,11 +12,13 @@ public class MedicoController {
     //    insertar
     public static void insert(){
         String name = JOptionPane.showInputDialog(null,"ingresa el nombre del medico");
-        String lastName = JOptionPane.showInputDialog(null,"ingresa la descripcion del medico");
+        String lastName = JOptionPane.showInputDialog(null,"ingresa los apellidos del medico");
 
         Object[] opcionesEspecial = Util.listArray(EspecialidadController.instaceModel().encontrarEspecialidad());
 
         EntityEspecializacion objEspecialidad = (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona tu especialidad", "no titulo", JOptionPane.QUESTION_MESSAGE, null, opcionesEspecial, opcionesEspecial[0]);
+
+        instaceModel().insertarMedico(new EntityMedico(name, lastName,objEspecialidad.getID_Especialidad(), objEspecialidad));
     }
 
     public static ModelMedico instaceModel(){
