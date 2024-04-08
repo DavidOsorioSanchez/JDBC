@@ -47,6 +47,7 @@ public class Main {
                                 case 4:
                                     EspecialidadController.listar();
                                     break;
+
                             }
                         }while (option2 != 5);
 

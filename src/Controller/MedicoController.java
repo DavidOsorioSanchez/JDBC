@@ -61,7 +61,7 @@ public class MedicoController {
         String lastName = JOptionPane.showInputDialog(null, "Ingresa el nuevo apellido: ",objSelected.getLastNameMedic());
 
         Object[] otionEspecial = Util.listArray(EspecialidadController.instaceModel().encontrarEspecialidad());
-        EntityEspecializacion objEspecial= (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona una especialidad","",JOptionPane.QUESTION_MESSAGE, null,options,options[0]);
+        EntityEspecializacion objEspecial= (EntityEspecializacion) JOptionPane.showInputDialog(null, "selecciona una especialidad","",JOptionPane.QUESTION_MESSAGE, null,otionEspecial,otionEspecial[0]);
 
 
         instaceModel().actualizarMedico(new EntityMedico(name,lastName,objEspecial.getID_Especialidad(),objEspecial));

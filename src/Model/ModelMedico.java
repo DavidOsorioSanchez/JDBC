@@ -60,9 +60,9 @@ public class ModelMedico implements CRUDMedico {
 
         try {
 
-            String SQL  = "UPDATE Medico SET name = ?, lastName = ?, id_Especialidad = ?; ";
+            String SQL  = "UPDATE Medico SET name = ?, lastName = ?, id_Especialidad = ? ; ";
 
-            PreparedStatement objPrepare = objConnection.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement objPrepare = objConnection.prepareStatement(SQL);
 
 
             objPrepare.setString(1,objModelos.getNameMedic());
